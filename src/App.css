@@ -37,20 +37,31 @@ body {
   width: 100vw;
 }
 
-/* Header with Color Palette */
-.header {
-  background: var(--palette-bg);
-  border-bottom: 1px solid #e0e0e0;
-  padding: 12px 24px;
-  box-shadow: var(--shadow);
-  z-index: 10;
+/* Main Content Area */
+.main-content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  padding: 40px;
+  gap: 60px;
+  justify-content: center;
+}
+
+/* Canvas Section */
+.canvas-section {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
 }
 
 /* Color Palette */
 .color-palette {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  margin-bottom: 10px;
 }
 
 .palette-grid {
@@ -86,23 +97,6 @@ body {
   border-color: var(--border-color);
   transform: scale(1.1);
   box-shadow: 0 0 0 2px white, 0 0 0 4px var(--border-color);
-}
-
-/* Main Content Area */
-.main-content {
-  display: flex;
-  flex: 1;
-  overflow: hidden;
-  padding: 24px;
-  gap: 40px;
-}
-
-/* Canvas Section */
-.canvas-section {
-  flex: 0 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .canvas-container {

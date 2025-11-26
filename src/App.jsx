@@ -9,15 +9,12 @@ function App() {
 
   return (
     <div className="app">
-      <header className="header">
-        <ColorPalette 
-          selectedColor={selectedColor} 
-          onColorSelect={setSelectedColor} 
-        />
-      </header>
-      
       <main className="main-content">
         <div className="canvas-section">
+          <ColorPalette 
+            selectedColor={selectedColor} 
+            onColorSelect={setSelectedColor} 
+          />
           <Canvas 
             selectedColor={selectedColor} 
             imageSrc="/image.png" 
