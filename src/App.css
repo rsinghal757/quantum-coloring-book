@@ -99,8 +99,8 @@ body {
 
 .color-swatch.selected {
   border-color: var(--border-color);
-  transform: scale(1.1);
-  box-shadow: 0 0 0 2px white, 0 0 0 4px var(--border-color);
+  transform: scale(1.02);
+  box-shadow: 0 0 0 1px white;
 }
 
 .canvas-container {
