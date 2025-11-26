@@ -1,13 +1,31 @@
+const BlochIcon = ({ direction = 'right' }) => {
+  const isRight = direction === 'right';
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%', padding: '4px' }}>
+       <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.2"/>
+       <ellipse cx="12" cy="12" rx="9" ry="3" stroke="currentColor" strokeWidth="1" strokeOpacity="0.4"/>
+       <path d="M12 3V21" stroke="currentColor" strokeWidth="1" strokeDasharray="2 2" strokeOpacity="0.4"/>
+       
+       {isRight ? (
+         <g>
+           <line x1="12" y1="12" x2="19" y2="12" stroke="currentColor" strokeWidth="1.5" />
+           <path d="M16 9L19 12L16 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+         </g>
+       ) : (
+         <g>
+           <line x1="12" y1="12" x2="5" y2="12" stroke="currentColor" strokeWidth="1.5" />
+           <path d="M8 9L5 12L8 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+         </g>
+       )}
+       <circle cx="12" cy="12" r="1.5" fill="currentColor"/>
+    </svg>
+  );
+};
+
 function InfoPanel() {
   return (
     <div className="info-panel">
       <h1 className="title">The Origins of Quantum Computing</h1>
-      
-      <div className="divider">
-        <span className="divider-line"></span>
-        <span className="divider-icon">⚛</span>
-        <span className="divider-line"></span>
-      </div>
       
       <div className="content">
         <p>
@@ -23,12 +41,15 @@ function InfoPanel() {
       </div>
       
       <div className="navigation">
-        <button className="nav-button" aria-label="Previous page">
-          ←
-        </button>
-        <button className="nav-button" aria-label="Next page">
-          →
-        </button>
+        <div className="nav-arrows">
+          <button className="nav-button" aria-label="Previous page">
+            <BlochIcon direction="left" />
+          </button>
+          <button className="nav-button" aria-label="Next page">
+            <BlochIcon direction="right" />
+          </button>
+        </div>
+        <span className="nav-icon">⚛</span>
       </div>
     </div>
   );

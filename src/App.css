@@ -42,8 +42,8 @@ body {
   display: flex;
   flex: 1;
   overflow: hidden;
-  padding: 10px 40px;
-  gap: 40px;
+  padding: 10px 20px;
+  gap: 20px;
   justify-content: center;
   align-items: center;
 }
@@ -113,7 +113,7 @@ body {
 
 .canvas-container canvas {
   max-height: calc(100vh - 40px);
-  max-width: calc(65vw - 100px);
+  max-width: calc(70vw - 100px);
   width: auto;
   height: auto;
   display: block;
@@ -151,31 +151,14 @@ body {
   line-height: 1.2;
 }
 
-/* Decorative Divider */
-.divider {
-  display: flex;
-  align-items: center;
-  margin: 20px 0 28px;
-  gap: 12px;
-}
-
-.divider-line {
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(to right, transparent, var(--border-color), transparent);
-}
-
-.divider-icon {
-  font-size: 1.4rem;
-  color: var(--text-secondary);
-}
-
 /* Content Text */
 .content {
+  font-family: 'Crimson Pro', Georgia, serif;
   color: var(--text-secondary);
-  font-size: 1.05rem;
+  font-size: 1.25rem;
   text-align: justify;
   hyphens: auto;
+  line-height: 1.5;
 }
 
 .content p {
@@ -190,25 +173,41 @@ body {
 /* Navigation Arrows */
 .navigation {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
   gap: 16px;
   margin-top: 48px;
+}
+
+.nav-arrows {
+  display: flex;
+  gap: 8px;
+}
+
+.nav-icon {
+  font-size: 1.8rem;
+  color: var(--text-secondary);
 }
 
 .nav-button {
   background: transparent;
   border: none;
-  font-size: 1.8rem;
+  font-size: 1.2rem;
   color: var(--text-color);
   cursor: pointer;
-  padding: 8px 16px;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: all 0.2s ease;
   border-radius: 0;
 }
 
 .nav-button:hover {
-  background: rgba(0, 0, 0, 0.05);
-  transform: scale(1.1);
+  background: transparent;
+  color: var(--accent-color);
+  transform: none;
 }
 
 .nav-button:active {
