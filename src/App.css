@@ -184,9 +184,20 @@ body {
   gap: 8px;
 }
 
-.nav-icon {
-  font-size: 1.8rem;
+.nav-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
   color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.nav-icon-container:hover {
+  color: var(--accent-color);
+  transform: rotate(180deg);
 }
 
 .nav-button {

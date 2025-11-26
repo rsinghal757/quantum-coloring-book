@@ -22,6 +22,17 @@ const BlochIcon = ({ direction = 'right' }) => {
   );
 };
 
+const AtomIcon = () => {
+  return (
+    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ padding: '4px' }}>
+      <ellipse cx="12" cy="12" rx="10" ry="4" stroke="currentColor" strokeWidth="1.2" transform="rotate(0 12 12)"/>
+      <ellipse cx="12" cy="12" rx="10" ry="4" stroke="currentColor" strokeWidth="1.2" transform="rotate(60 12 12)"/>
+      <ellipse cx="12" cy="12" rx="10" ry="4" stroke="currentColor" strokeWidth="1.2" transform="rotate(120 12 12)"/>
+      <circle cx="12" cy="12" r="1.5" fill="currentColor"/>
+    </svg>
+  );
+};
+
 function InfoPanel() {
   return (
     <div className="info-panel">
@@ -49,7 +60,9 @@ function InfoPanel() {
             <BlochIcon direction="right" />
           </button>
         </div>
-        <span className="nav-icon">⚛</span>
+        <div className="nav-icon-container">
+          <AtomIcon />
+        </div>
       </div>
     </div>
   );
