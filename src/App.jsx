@@ -11,13 +11,13 @@ function App() {
     <div className="app">
       <main className="main-content">
         <div className="canvas-section">
-          <ColorPalette 
-            selectedColor={selectedColor} 
-            onColorSelect={setSelectedColor} 
-          />
           <Canvas 
             selectedColor={selectedColor} 
             imageSrc="/image.png" 
+          />
+          <ColorPalette 
+            selectedColor={selectedColor} 
+            onColorSelect={setSelectedColor} 
           />
         </div>
         
