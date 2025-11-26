@@ -1,0 +1,275 @@
+/* CSS Reset and Base Styles */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg-color: #faf9f7;
+  --text-color: #1a1a1a;
+  --text-secondary: #4a4a4a;
+  --border-color: #2a2a2a;
+  --accent-color: #c9302c;
+  --palette-bg: #ffffff;
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  overflow: hidden;
+}
+
+/* App Layout */
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* Header with Color Palette */
+.header {
+  background: var(--palette-bg);
+  border-bottom: 1px solid #e0e0e0;
+  padding: 12px 24px;
+  box-shadow: var(--shadow);
+  z-index: 10;
+}
+
+/* Color Palette */
+.color-palette {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.palette-grid {
+  display: grid;
+  grid-template-columns: repeat(16, 1fr);
+  gap: 6px;
+  max-width: 700px;
+}
+
+@media (max-width: 800px) {
+  .palette-grid {
+    grid-template-columns: repeat(8, 1fr);
+  }
+}
+
+.color-swatch {
+  width: 28px;
+  height: 28px;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+.color-swatch:hover {
+  transform: scale(1.15);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  z-index: 1;
+}
+
+.color-swatch.selected {
+  border-color: var(--border-color);
+  transform: scale(1.1);
+  box-shadow: 0 0 0 2px white, 0 0 0 4px var(--border-color);
+}
+
+/* Main Content Area */
+.main-content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  padding: 24px;
+  gap: 40px;
+}
+
+/* Canvas Section */
+.canvas-section {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.canvas-container {
+  position: relative;
+  background: white;
+  border-radius: 8px;
+  box-shadow: var(--shadow-hover);
+  overflow: hidden;
+}
+
+.canvas-container canvas {
+  max-height: calc(100vh - 150px);
+  max-width: calc(50vw - 60px);
+  width: auto;
+  height: auto;
+  display: block;
+}
+
+.loading {
+  padding: 40px;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+
+/* Info Section */
+.info-section {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.info-panel {
+  max-width: 520px;
+  padding: 20px;
+}
+
+/* Title */
+.title {
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 2.4rem;
+  font-weight: 500;
+  color: var(--text-color);
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+/* Decorative Divider */
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 20px 0 28px;
+  gap: 12px;
+}
+
+.divider-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--border-color), transparent);
+}
+
+.divider-icon {
+  font-size: 1.4rem;
+  color: var(--text-secondary);
+}
+
+/* Content Text */
+.content {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.content p {
+  margin-bottom: 1em;
+}
+
+.content strong {
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+/* Navigation Arrows */
+.navigation {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 48px;
+}
+
+.nav-button {
+  background: transparent;
+  border: none;
+  font-size: 1.8rem;
+  color: var(--text-color);
+  cursor: pointer;
+  padding: 8px 16px;
+  transition: all 0.2s ease;
+  border-radius: 4px;
+}
+
+.nav-button:hover {
+  background: rgba(0, 0, 0, 0.05);
+  transform: scale(1.1);
+}
+
+.nav-button:active {
+  transform: scale(0.95);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .main-content {
+    flex-direction: column;
+    align-items: center;
+    padding: 16px;
+    gap: 24px;
+  }
+  
+  .canvas-section {
+    width: 100%;
+  }
+  
+  .canvas-container canvas {
+    max-height: 50vh;
+    max-width: calc(100vw - 40px);
+  }
+  
+  .info-section {
+    width: 100%;
+    padding: 0;
+  }
+  
+  .title {
+    font-size: 1.8rem;
+    text-align: center;
+  }
+  
+  .content {
+    font-size: 1rem;
+  }
+  
+  .navigation {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .header {
+    padding: 10px 12px;
+  }
+  
+  .palette-grid {
+    gap: 4px;
+  }
+  
+  .color-swatch {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .title {
+    font-size: 1.5rem;
+  }
+}
+
