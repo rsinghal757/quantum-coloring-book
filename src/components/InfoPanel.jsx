@@ -35,7 +35,7 @@ const AtomIcon = () => {
   );
 };
 
-function InfoPanel() {
+function InfoPanel({ title, content, onNext, onPrev, hasNext, hasPrev }) {
   const [atomColor, setAtomColor] = useState('var(--text-secondary)');
   
   const handleAtomHover = () => {
@@ -56,29 +56,49 @@ function InfoPanel() {
     setAtomColor('var(--text-secondary)');
   };
 
+  // Helper function to parse bold text in markdown style (**text**)
+  const parseContent = (text) => {
+    const parts = text.split(/(\*\*.*?\*\*)/g);
+    return parts.map((part, index) => {
+      if (part.startsWith('**') && part.endsWith('**')) {
+        return <strong key={index}>{part.slice(2, -2)}</strong>;
+      }
+      return part;
+    });
+  };
+
   return (
     <div className="info-panel">
-      <h1 className="title">The Origins of Quantum Computing</h1>
+      <h1 className="title">{title}</h1>
       
-      <div className="content">
-        <p>
-          Who came up with the idea of quantum computing? Well, it's difficult to pinpoint one single 
-          person. In 1980, Russian mathematician Yuri Manin was the first to suggest that a computer 
-          could run on quantum behavior instead of classical behavior, in a mathematics book about 
-          computable functions. The following year, American physicist Richard Feynman 
-          independently suggested a similar idea, stating in a famous lecture: "If you want to make 
-          a simulation of nature, you'd better make it quantum mechanical, and by golly it's a wonderful 
-          problem, because it doesn't look so easy." These were the first instances of this idea of 
-          <strong> quantum simulation</strong>, which paved the way for quantum computing as we know it today.
-        </p>
+      <div className="content-wrapper">
+        <div className="content">
+          {content.map((paragraph, index) => (
+            <p key={index}>
+              {parseContent(paragraph)}
+            </p>
+          ))}
+        </div>
       </div>
       
       <div className="navigation">
         <div className="nav-arrows">
-          <button className="nav-button" aria-label="Previous page">
+          <button 
+            className="nav-button" 
+            aria-label="Previous page"
+            onClick={onPrev}
+            disabled={!hasPrev}
+            style={{ opacity: hasPrev ? 1 : 0.3, cursor: hasPrev ? 'pointer' : 'default' }}
+          >
             <BlochIcon direction="left" />
           </button>
-          <button className="nav-button" aria-label="Next page">
+          <button 
+            className="nav-button" 
+            aria-label="Next page"
+            onClick={onNext}
+            disabled={!hasNext}
+            style={{ opacity: hasNext ? 1 : 0.3, cursor: hasNext ? 'pointer' : 'default' }}
+          >
             <BlochIcon direction="right" />
           </button>
         </div>
@@ -96,4 +116,3 @@ function InfoPanel() {
 }
 
 export default InfoPanel;
-

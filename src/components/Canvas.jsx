@@ -8,6 +8,7 @@ function Canvas({ selectedColor, imageSrc }) {
 
   // Load the image when component mounts or imageSrc changes
   useEffect(() => {
+    setImageLoaded(false); // Reset loaded state when src changes
     const img = new Image();
     img.onload = () => {
       setOriginalImage(img);
@@ -82,4 +83,3 @@ function Canvas({ selectedColor, imageSrc }) {
 }
 
 export default Canvas;
-

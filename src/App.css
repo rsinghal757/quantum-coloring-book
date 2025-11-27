@@ -42,10 +42,12 @@ body {
   display: flex;
   flex: 1;
   overflow: hidden;
-  padding: 10px 20px;
-  gap: 20px;
+  padding: 40px;
+  gap: 60px;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  max-width: 1600px;
+  margin: 0 auto;
 }
 
 /* Canvas Section */
@@ -54,7 +56,7 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 20px;
+  gap: 32px;
 }
 
 /* Color Palette */
@@ -63,20 +65,18 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-left: 10px;
-  margin-right: 0;
-  margin-bottom: 0;
-  gap: 24px; /* Space between palette and cat button */
+  margin: 0;
+  gap: 24px;
 }
 
 .palette-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 0; /* No gap between swatches */
+  gap: 0;
   max-width: 80px;
-  border-radius: 12px; /* Pill/Rounded Rectangle shape */
-  overflow: hidden; /* Clips the corners of the swatches */
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-radius: 0;
+  overflow: hidden;
+  box-shadow: none;
 }
 
 .color-swatch {
@@ -105,14 +105,14 @@ body {
   height: 40px;
   background-color: black;
   border: none;
-  border-radius: 20px;
+  border-radius: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: transform 0.2s ease, opacity 0.2s ease;
   padding: 6px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  box-shadow: none;
 }
 
 .cat-button:hover {
@@ -128,13 +128,13 @@ body {
   position: relative;
   background: white;
   border-radius: 0;
-  box-shadow: var(--shadow-hover);
+  box-shadow: none;
   overflow: hidden;
 }
 
 .canvas-container canvas {
-  max-height: calc(100vh - 40px);
-  max-width: calc(70vw - 100px);
+  max-height: calc(100vh - 80px);
+  max-width: calc(65vw - 120px);
   width: auto;
   height: auto;
   display: block;
@@ -149,41 +149,108 @@ body {
 /* Info Section */
 .info-section {
   flex: 1;
+  height: 100%;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
-  padding: 20px;
-  overflow-y: auto;
+  padding: 0;
+  max-width: 500px;
+  /* Remove overflow-y from here to prevent double scrollbars if any */
 }
 
 .info-panel {
-  max-width: 520px;
-  padding: 20px;
+  width: 100%;
+  height: 600px; /* Fixed height to prevent shifting */
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  position: relative; /* For gradient mask positioning */
 }
 
 /* Title */
 .title {
   font-family: 'Crimson Pro', Georgia, serif;
-  font-size: 2.4rem;
+  font-size: 2.2rem;
   font-weight: 500;
   color: var(--text-color);
-  margin-bottom: 16px;
-  letter-spacing: -0.02em;
+  margin: 0;
+  letter-spacing: -0.01em;
   line-height: 1.2;
+  height: 2.4em; /* Fixed height for 2 lines of title */
+  display: flex;
+  align-items: flex-end; /* Bottom align single line titles */
+  flex-shrink: 0;
 }
 
 /* Content Text */
 .content {
   font-family: 'Crimson Pro', Georgia, serif;
   color: var(--text-secondary);
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   text-align: justify;
   hyphens: auto;
-  line-height: 1.5;
+  line-height: 1.6;
+  flex: 1; /* Take up remaining space */
+  overflow-y: scroll; /* Always show scrollbar */
+  padding-right: 16px; /* Space for scrollbar */
+  
+  /* Custom Scrollbar Styling */
+  scrollbar-width: auto; /* Use default width */
+  scrollbar-color: #D2B48C #f0f0f0; /* Thumb color and Track color */
+}
+
+/* Webkit Scrollbar Styling */
+.content::-webkit-scrollbar {
+  width: 6px; /* Thinner scrollbar */
+}
+
+.content::-webkit-scrollbar-track {
+  background-color: #f0f0f0; /* Light grey visible track */
+  border-left: 1px solid rgba(0,0,0,0.05);
+}
+
+.content::-webkit-scrollbar-thumb {
+  background-color: #4a4a4a; /* Same as nav icon default color (text-secondary) */
+  border: none; /* Solid block, no transparent border */
+  border-radius: 0; /* Square corners */
+  transition: background-color 0.2s ease;
+  min-height: 40px; /* Ensure thumb is always graspable */
+}
+
+.content::-webkit-scrollbar-thumb:hover {
+  background-color: #2a2a2a; /* Darker on hover */
+}
+
+/* Content Wrapper to handle gradient mask */
+.content-wrapper {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Gradient Mask at bottom of content */
+.content-wrapper::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 16px; /* Align with scrollbar padding */
+  height: 40px;
+  background: linear-gradient(to bottom, rgba(250, 249, 247, 0), rgba(250, 249, 247, 1));
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.2s ease;
 }
 
 .content p {
-  margin-bottom: 1em;
+  margin-bottom: 1.2em;
+}
+
+.content p:last-child {
+  margin-bottom: 20px; /* Add space at bottom so text isn't hidden by gradient */
 }
 
 .content strong {
@@ -197,25 +264,27 @@ body {
   justify-content: space-between;
   align-items: center;
   gap: 12px;
-  margin-top: 48px;
-  margin-left: -10px;
-  margin-right: -8px;
+  margin-top: 16px;
+  padding-top: 0;
+  border-top: none;
+  flex-shrink: 0;
 }
 
 .nav-arrows {
   display: flex;
-  gap: 8px;
+  gap: 16px;
 }
 
 .nav-icon-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 60px;
-  height: 60px;
+  width: 48px;
+  height: 48px;
   color: var(--text-secondary);
   cursor: pointer;
   transition: all 0.2s ease;
+  margin-right: 8px;
 }
 
 .nav-icon-container:hover {
@@ -228,17 +297,17 @@ body {
   font-size: 1.2rem;
   color: var(--text-color);
   cursor: pointer;
-  width: 60px;
-  height: 60px;
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.2s ease;
-  border-radius: 0;
+  border-radius: 50%;
 }
 
 .nav-button:hover {
-  background: transparent;
+  background: rgba(0,0,0,0.05);
   color: var(--accent-color);
   transform: none;
 }
@@ -252,13 +321,15 @@ body {
   .main-content {
     flex-direction: column;
     align-items: center;
-    padding: 16px;
-    gap: 24px;
+    padding: 20px;
+    gap: 40px;
+    overflow-y: auto;
   }
   
   .canvas-section {
     width: 100%;
-    justify-content: center; /* Center the canvas/palette group */
+    justify-content: center;
+    flex-wrap: wrap;
   }
   
   .canvas-container canvas {
@@ -268,7 +339,9 @@ body {
   
   .info-section {
     width: 100%;
-    padding: 0;
+    max-width: 600px;
+    height: auto;
+    overflow: visible;
   }
   
   .title {
@@ -278,16 +351,22 @@ body {
   
   .content {
     font-size: 1rem;
+    text-align: justify;
   }
   
   .navigation {
     justify-content: center;
   }
+  
+  /* Disable gradient mask on mobile where height is auto */
+  .content-wrapper::after {
+    display: none;
+  }
 }
 
 @media (max-width: 600px) {
   .palette-grid {
-    grid-template-columns: repeat(4, 1fr); /* Switch to 4 cols on mobile if needed, or keep 2 */
+    grid-template-columns: repeat(4, 1fr);
     max-width: 160px;
   }
   
