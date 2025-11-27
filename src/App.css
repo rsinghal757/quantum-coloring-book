@@ -198,7 +198,6 @@ body {
 }
 
 .nav-icon-container:hover {
-  color: var(--accent-color);
   transform: rotate(180deg);
 }
 

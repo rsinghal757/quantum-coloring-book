@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 const BlochIcon = ({ direction = 'right' }) => {
   const isRight = direction === 'right';
   return (
@@ -34,6 +36,26 @@ const AtomIcon = () => {
 };
 
 function InfoPanel() {
+  const [atomColor, setAtomColor] = useState('var(--text-secondary)');
+  
+  const handleAtomHover = () => {
+    const rainbowColors = [
+      '#E74C3C', // Red
+      '#E67E22', // Orange
+      '#F1C40F', // Yellow
+      '#2ECC71', // Green
+      '#3498DB', // Blue
+      '#9B59B6', // Purple
+      '#E91E63'  // Pink
+    ];
+    const randomColor = rainbowColors[Math.floor(Math.random() * rainbowColors.length)];
+    setAtomColor(randomColor);
+  };
+
+  const handleAtomLeave = () => {
+    setAtomColor('var(--text-secondary)');
+  };
+
   return (
     <div className="info-panel">
       <h1 className="title">The Origins of Quantum Computing</h1>
@@ -60,7 +82,12 @@ function InfoPanel() {
             <BlochIcon direction="right" />
           </button>
         </div>
-        <div className="nav-icon-container">
+        <div 
+          className="nav-icon-container" 
+          onMouseEnter={handleAtomHover}
+          onMouseLeave={handleAtomLeave}
+          style={{ color: atomColor }}
+        >
           <AtomIcon />
         </div>
       </div>
