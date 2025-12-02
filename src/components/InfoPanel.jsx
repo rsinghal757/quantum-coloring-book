@@ -35,6 +35,15 @@ const AtomIcon = () => {
   );
 };
 
+const StartIcon = () => {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="12" cy="12" r="11" stroke="currentColor" strokeWidth="1.2" strokeOpacity="0.5"/>
+      <path d="M10 8L15 12L10 16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  );
+};
+
 
 function InfoPanel({ title, content, type, seriesTitle, authors, onNext, onPrev, hasNext, hasPrev }) {
   const [atomColor, setAtomColor] = useState('var(--text-secondary)');
@@ -117,7 +126,8 @@ function InfoPanel({ title, content, type, seriesTitle, authors, onNext, onPrev,
           )}
         </div>
         <button className="start-button" onClick={onNext}>
-          Start <span className="arrow">→</span>
+          <span className="start-text">Start Reading</span>
+          <span className="start-icon"><StartIcon /></span>
         </button>
       </div>
     );

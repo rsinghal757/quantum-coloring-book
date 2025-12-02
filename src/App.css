@@ -206,38 +206,61 @@ body {
 
 .start-button {
   font-family: 'Source Sans 3', sans-serif;
-  font-size: 1.5rem;
-  font-weight: 500;
-  color: var(--text-color);
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--text-secondary);
   background: transparent;
-  border: 2px solid var(--text-color);
-  padding: 12px 32px;
-  border-radius: 50px;
+  border: none;
+  padding: 12px 24px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
   margin-bottom: 40px;
 }
 
 .start-button:hover {
-  background: var(--text-color);
-  color: var(--bg-color);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  background: transparent;
+  color: var(--text-color);
+  transform: none;
+  box-shadow: none;
+}
+
+.start-text {
+  position: relative;
+  letter-spacing: 0.02em;
+}
+
+.start-text::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--text-color);
+  transition: width 0.3s ease;
+}
+
+.start-button:hover .start-text::after {
+  width: 100%;
+}
+
+.start-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.start-button:hover .start-icon {
+  transform: translateX(6px);
+  color: var(--text-color);
 }
 
 .start-button:active {
-  transform: translateY(0);
-}
-
-.start-button .arrow {
-  transition: transform 0.2s ease;
-}
-
-.start-button:hover .arrow {
-  transform: translateX(4px);
+  transform: scale(0.98);
 }
 
 .series-title {
