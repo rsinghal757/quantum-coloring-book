@@ -165,7 +165,7 @@ export const bookPages = [
       `Some are physicists who study the fundamental laws of quantum mechanics. Others are computer scientists who develop new algorithms and software. There are also materials scientists, electrical engineers, and mathematicians who contribute their expertise to building and understanding quantum computers.`,
       `In the following pages, you will meet some of the leading scientists who are shaping the future of quantum computing.`
     ],
-    image: '/sketches/scientists.png'
+    image: ''
   },
   {
     id: 'wineland-monroe',

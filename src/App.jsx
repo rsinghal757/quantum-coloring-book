@@ -13,6 +13,8 @@ function App() {
   const hasNext = currentPageIndex < bookPages.length - 1;
   const hasPrev = currentPageIndex > 0;
 
+  const hasImage = Boolean(currentPage.image);
+
   const handleNext = () => {
     if (hasNext) {
       setCurrentPageIndex(prev => prev + 1);
@@ -27,19 +29,21 @@ function App() {
 
   return (
     <div className="app">
-      <main className="main-content">
-        <div className="canvas-section">
-          <Canvas 
-            selectedColor={selectedColor} 
-            imageSrc={currentPage.image} 
-          />
-          <ColorPalette 
-            selectedColor={selectedColor} 
-            onColorSelect={setSelectedColor} 
-          />
-        </div>
+      <main className={`main-content ${!hasImage ? 'single-column' : ''}`}>
+        {hasImage && (
+          <div className="canvas-section">
+            <Canvas 
+              selectedColor={selectedColor} 
+              imageSrc={currentPage.image} 
+            />
+            <ColorPalette 
+              selectedColor={selectedColor} 
+              onColorSelect={setSelectedColor} 
+            />
+          </div>
+        )}
         
-        <div className="info-section">
+        <div className={`info-section ${!hasImage ? 'wide' : ''}`}>
           <InfoPanel 
             title={currentPage.title}
             content={currentPage.content}
