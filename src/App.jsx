@@ -47,6 +47,9 @@ function App() {
           <InfoPanel 
             title={currentPage.title}
             content={currentPage.content}
+            type={currentPage.type}
+            seriesTitle={currentPage.seriesTitle}
+            authors={currentPage.authors}
             onNext={handleNext}
             onPrev={handlePrev}
             hasNext={hasNext}

@@ -35,7 +35,8 @@ const AtomIcon = () => {
   );
 };
 
-function InfoPanel({ title, content, onNext, onPrev, hasNext, hasPrev }) {
+
+function InfoPanel({ title, content, type, seriesTitle, authors, onNext, onPrev, hasNext, hasPrev }) {
   const [atomColor, setAtomColor] = useState('var(--text-secondary)');
   
   const handleAtomHover = () => {
@@ -67,6 +68,61 @@ function InfoPanel({ title, content, onNext, onPrev, hasNext, hasPrev }) {
     });
   };
 
+  const renderNavigation = () => (
+    <div className="navigation">
+      <div className="nav-arrows">
+        <button 
+          className="nav-button" 
+          aria-label="Previous page"
+          onClick={onPrev}
+          disabled={!hasPrev}
+          style={{ opacity: hasPrev ? 1 : 0.3, cursor: hasPrev ? 'pointer' : 'default' }}
+        >
+          <BlochIcon direction="left" />
+        </button>
+        <button 
+          className="nav-button" 
+          aria-label="Next page"
+          onClick={onNext}
+          disabled={!hasNext}
+          style={{ opacity: hasNext ? 1 : 0.3, cursor: hasNext ? 'pointer' : 'default' }}
+        >
+          <BlochIcon direction="right" />
+        </button>
+      </div>
+      <div 
+        className="nav-icon-container" 
+        onMouseEnter={handleAtomHover}
+        onMouseLeave={handleAtomLeave}
+        style={{ color: atomColor }}
+      >
+        <AtomIcon />
+      </div>
+    </div>
+  );
+
+  if (type === 'cover') {
+    return (
+      <div className="info-panel cover-layout">
+        <div className="cover-content">
+          <p className="series-title">{seriesTitle}</p>
+          <h1 className="book-title">{title}</h1>
+          <p className="authors">{authors}</p>
+          {content && content.length > 0 && (
+            <div className="cover-extra-content">
+              {content.map((line, index) => (
+                <p key={index}>{parseContent(line)}</p>
+              ))}
+            </div>
+          )}
+        </div>
+        <button className="start-button" onClick={onNext}>
+          Start <span className="arrow">→</span>
+        </button>
+      </div>
+    );
+  }
+
   return (
     <div className="info-panel">
       <h1 className="title">{title}</h1>
@@ -81,38 +137,10 @@ function InfoPanel({ title, content, onNext, onPrev, hasNext, hasPrev }) {
         </div>
       </div>
       
-      <div className="navigation">
-        <div className="nav-arrows">
-          <button 
-            className="nav-button" 
-            aria-label="Previous page"
-            onClick={onPrev}
-            disabled={!hasPrev}
-            style={{ opacity: hasPrev ? 1 : 0.3, cursor: hasPrev ? 'pointer' : 'default' }}
-          >
-            <BlochIcon direction="left" />
-          </button>
-          <button 
-            className="nav-button" 
-            aria-label="Next page"
-            onClick={onNext}
-            disabled={!hasNext}
-            style={{ opacity: hasNext ? 1 : 0.3, cursor: hasNext ? 'pointer' : 'default' }}
-          >
-            <BlochIcon direction="right" />
-          </button>
-        </div>
-        <div 
-          className="nav-icon-container" 
-          onMouseEnter={handleAtomHover}
-          onMouseLeave={handleAtomLeave}
-          style={{ color: atomColor }}
-        >
-          <AtomIcon />
-        </div>
-      </div>
+      {renderNavigation()}
     </div>
   );
 }
+
 
 export default InfoPanel;

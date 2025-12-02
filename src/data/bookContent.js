@@ -1,6 +1,17 @@
 
 export const bookPages = [
   {
+    id: 'cover',
+    type: 'cover',
+    seriesTitle: 'Drawn to Discovery',
+    title: 'The Quantum Computing Coloring Book',
+    authors: 'Aedan Gardill & Sarah Parker',
+    content: [
+      'built with ❤️ by Rohit Singhal'
+    ],
+    image: ''
+  },
+  {
     id: 'what-is-quantum',
     title: 'What is Quantum Computing?',
     content: [
