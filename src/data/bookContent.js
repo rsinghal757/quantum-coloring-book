@@ -173,7 +173,7 @@ export const bookPages = [
     content: [
       `All computers, including quantum ones, need a set of rules to follow to be able to solve problems. In quantum computing, we call this set of rules quantum gates. The most important of these quantum gates is called a Controlled-Not gate, in which one qubit’s state is directly influenced by the state of another entangled qubit. In the 1990s, researchers David Wineland and Christopher Monroe were studying trapped ions and came up with a way to control the interaction between them. Wineland, Monroe, and their team successfully applied a Controlled-Not gate on their trapped ions. This was the first time that anyone had physically shown that it was possible to have these logic gates act on individual qubits, which was the first huge experimental step towards quantum computing.`
     ],
-    image: 'wineland-monroe.png'
+    image: '/sketches/wineland-monroe.png'
   },
   {
     id: 'bacon',
