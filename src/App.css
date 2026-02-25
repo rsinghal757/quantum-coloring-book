@@ -29,6 +29,13 @@ body {
   overflow: hidden;
 }
 
+@media (max-width: 1200px) {
+  body {
+    overflow: auto;
+    overflow-x: hidden;
+  }
+}
+
 /* App Layout */
 .app {
   display: flex;
@@ -465,9 +472,21 @@ body {
     overflow: visible;
   }
   
+  .info-panel {
+    height: auto;
+    min-height: 0;
+  }
+
+  .info-panel.cover-layout {
+    height: auto;
+    min-height: 400px;
+  }
+
   .title {
     font-size: 1.8rem;
     text-align: center;
+    height: auto;
+    min-height: 0;
   }
 
   .book-title {
@@ -477,6 +496,12 @@ body {
   .content {
     font-size: 1rem;
     text-align: justify;
+    overflow-y: visible;
+    padding-right: 0;
+  }
+
+  .content-wrapper {
+    overflow: visible;
   }
   
   .navigation {
@@ -489,19 +514,61 @@ body {
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+  .main-content {
+    padding: 16px;
+    gap: 24px;
+  }
+
+  .canvas-section {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .canvas-container canvas {
+    max-height: 45vh;
+    max-width: calc(100vw - 32px);
+  }
+
+  .color-palette {
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    align-items: center;
+  }
+
   .palette-grid {
-    grid-template-columns: repeat(4, 1fr);
-    max-width: 160px;
+    grid-template-columns: repeat(8, 1fr);
+    max-width: 100%;
+    width: auto;
   }
-  
+
   .color-swatch {
-    width: 32px;
-    height: 32px;
+    width: 36px;
+    height: 36px;
   }
-  
+
+  .cat-button {
+    width: 60px;
+    height: 36px;
+  }
+
+  .info-section {
+    max-width: 100%;
+    padding: 0 4px;
+  }
+
+  .info-panel {
+    gap: 20px;
+  }
+
   .title {
     font-size: 1.5rem;
+  }
+
+  .content {
+    font-size: 1rem;
   }
 
   .book-title {
@@ -510,5 +577,80 @@ body {
 
   .series-title {
     font-size: 2rem;
+  }
+
+  .start-button {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    padding: 12px;
+    gap: 20px;
+  }
+
+  .canvas-container canvas {
+    max-height: 40vh;
+    max-width: calc(100vw - 24px);
+  }
+
+  .palette-grid {
+    grid-template-columns: repeat(8, 1fr);
+  }
+
+  .color-swatch {
+    width: 32px;
+    height: 32px;
+  }
+
+  .cat-button {
+    width: 56px;
+    height: 32px;
+  }
+
+  .info-section {
+    padding: 0;
+  }
+
+  .info-panel {
+    gap: 16px;
+  }
+
+  .title {
+    font-size: 1.3rem;
+  }
+
+  .content {
+    font-size: 0.95rem;
+  }
+
+  .book-title {
+    font-size: 2rem;
+  }
+
+  .series-title {
+    font-size: 1.6rem;
+  }
+
+  .authors {
+    font-size: 1.2rem;
+  }
+
+  .nav-button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .nav-icon-container {
+    width: 40px;
+    height: 40px;
+  }
+
+  .start-button {
+    font-size: 1rem;
+    padding: 10px 20px;
+    margin-bottom: 16px;
   }
 }
