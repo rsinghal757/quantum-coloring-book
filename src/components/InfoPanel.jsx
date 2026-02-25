@@ -45,7 +45,7 @@ const StartIcon = () => {
 };
 
 
-function InfoPanel({ title, content, type, seriesTitle, authors, onNext, onPrev, hasNext, hasPrev }) {
+function InfoPanel({ title, content, type, seriesTitle, authors, onNext, onPrev, hasNext, hasPrev, navOnly }) {
   const [atomColor, setAtomColor] = useState('var(--text-secondary)');
   
   const handleAtomHover = () => {
@@ -109,6 +109,11 @@ function InfoPanel({ title, content, type, seriesTitle, authors, onNext, onPrev,
       </div>
     </div>
   );
+
+  // Navigation-only mode for sketch pages
+  if (navOnly) {
+    return renderNavigation();
+  }
 
   if (type === 'cover') {
     return (
