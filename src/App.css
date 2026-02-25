@@ -29,13 +29,6 @@ body {
   overflow: hidden;
 }
 
-@media (max-width: 1200px) {
-  body {
-    overflow: auto;
-    overflow-x: hidden;
-  }
-}
-
 /* App Layout */
 .app {
   display: flex;
@@ -52,18 +45,45 @@ body {
   padding: 40px;
   gap: 60px;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   max-width: 1600px;
   margin: 0 auto;
+  width: 100%;
+}
+
+/* === SKETCH PAGE LAYOUT === */
+.main-content.sketch-page {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 40px;
+  gap: 0;
+  position: relative;
+}
+
+.sketch-layout {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 24px;
+  flex: 1;
+  width: 100%;
 }
 
 /* Canvas Section */
 .canvas-section {
   flex: 0 0 auto;
   display: flex;
-  flex-direction: row;
   align-items: center;
-  gap: 32px;
+  justify-content: center;
+}
+
+/* Palette positioned beside the sketch on desktop */
+.palette-aside {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: flex-start;
+  padding-top: 0;
 }
 
 /* Color Palette */
@@ -140,8 +160,8 @@ body {
 }
 
 .canvas-container canvas {
-  max-height: calc(100vh - 80px);
-  max-width: calc(65vw - 120px);
+  max-height: calc(100vh - 140px);
+  max-width: calc(100vw - 200px);
   width: auto;
   height: auto;
   display: block;
@@ -153,17 +173,83 @@ body {
   font-size: 1.1rem;
 }
 
+/* Sketch Nav (view toggle at bottom of sketch page) */
+.sketch-nav {
+  display: flex;
+  justify-content: center;
+  padding: 16px 0 8px;
+  flex-shrink: 0;
+}
+
+/* Text Page Nav (view toggle at bottom-right of text page) */
+.text-page-nav {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 10;
+}
+
+/* View Toggle Button */
+.view-toggle-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: var(--text-color);
+  color: var(--bg-color);
+  border: none;
+  border-radius: 24px;
+  cursor: pointer;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+}
+
+.view-toggle-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.view-toggle-button:active {
+  transform: scale(0.97);
+}
+
+/* === TEXT PAGE LAYOUT === */
+.main-content.text-page {
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.main-content.cover-page {
+  overflow: hidden;
+  align-items: stretch;
+}
+
 /* Info Section */
 .info-section {
-  flex: 1;
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 0;
   max-width: 500px;
   transition: max-width 0.3s ease;
-  /* Remove overflow-y from here to prevent double scrollbars if any */
+}
+
+.cover-page .info-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-page:not(.cover-page) .info-section {
+  flex: 0 1 auto;
+  height: auto;
+  max-height: 100%;
 }
 
 .info-section.wide {
@@ -446,25 +532,16 @@ body {
 
 /* Responsive adjustments */
 @media (max-width: 1200px) {
-  .main-content {
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    gap: 40px;
+  body {
+    overflow: auto;
+    overflow-x: hidden;
+  }
+
+  .main-content.text-page {
+    padding: 32px 24px;
     overflow-y: auto;
   }
-  
-  .canvas-section {
-    width: 100%;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  
-  .canvas-container canvas {
-    max-height: 50vh;
-    max-width: calc(100vw - 40px);
-  }
-  
+
   .info-section {
     width: 100%;
     max-width: 600px;
@@ -508,27 +585,31 @@ body {
     justify-content: center;
   }
   
-  /* Disable gradient mask on mobile where height is auto */
+  /* Disable gradient mask when height is auto */
   .content-wrapper::after {
     display: none;
   }
 }
 
 @media (max-width: 768px) {
-  .main-content {
-    padding: 16px;
-    gap: 24px;
+  .main-content.sketch-page {
+    padding: 24px 16px;
   }
 
-  .canvas-section {
+  .sketch-layout {
     flex-direction: column;
     align-items: center;
     gap: 16px;
   }
 
   .canvas-container canvas {
-    max-height: 45vh;
+    max-height: 55vh;
     max-width: calc(100vw - 32px);
+  }
+
+  .palette-aside {
+    width: 100%;
+    justify-content: center;
   }
 
   .color-palette {
@@ -554,9 +635,13 @@ body {
     height: 36px;
   }
 
+  .main-content.text-page {
+    padding: 24px 20px;
+  }
+
   .info-section {
     max-width: 100%;
-    padding: 0 4px;
+    padding: 0;
   }
 
   .info-panel {
@@ -583,16 +668,20 @@ body {
     font-size: 1.1rem;
     margin-bottom: 20px;
   }
+
+  .text-page-nav {
+    bottom: 16px;
+    right: 16px;
+  }
 }
 
 @media (max-width: 480px) {
-  .main-content {
-    padding: 12px;
-    gap: 20px;
+  .main-content.sketch-page {
+    padding: 20px 12px;
   }
 
   .canvas-container canvas {
-    max-height: 40vh;
+    max-height: 50vh;
     max-width: calc(100vw - 24px);
   }
 
@@ -610,8 +699,8 @@ body {
     height: 32px;
   }
 
-  .info-section {
-    padding: 0;
+  .main-content.text-page {
+    padding: 20px 16px;
   }
 
   .info-panel {
@@ -652,5 +741,10 @@ body {
     font-size: 1rem;
     padding: 10px 20px;
     margin-bottom: 16px;
+  }
+
+  .view-toggle-button {
+    font-size: 0.85rem;
+    padding: 8px 16px;
   }
 }
